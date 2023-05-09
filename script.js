@@ -1,61 +1,63 @@
-// Get all tab buttons and tab content
-const tabButtons = document.querySelectorAll(".tab button");
-const tabContents = document.querySelectorAll(".tabcontent");
+// script.js
+const tabsContainer = document.querySelector(".tabs");
+const list = document.getElementById("list");
 
-// Hide all tab content and deselect all tabs
-tabContents.forEach((tabContent) => {
-  tabContent.style.display = "none";
-});
-tabButtons.forEach((button) => {
-  button.classList.remove("selected");
-});
+let currentTab = null;
+let currentItem = null;
 
-// Add event listener to each tab button
-tabButtons.forEach((button, index) => {
-  button.addEventListener("click", () => {
-    // if click on the button do the following
-    // Deselect all tabs except the clicked tab
-    tabButtons.forEach((otherButton) => {
-      if (otherButton !== button) {
-        otherButton.classList.remove("selected");
-      }
-    });
+function createTabs() {
+  data.forEach((category) => {
+    const tab = document.createElement("button");
+    tab.textContent = category.name;
+    tab.classList.add("tab");
+    tab.id = category.name;
+    tab.addEventListener("click", handleTabClick);
+    tabsContainer.appendChild(tab);
+  });
+}
 
-    // Hide all tab content
-    tabContents.forEach((tabContent) => {
-      tabContent.style.display = "none";
-    });
+function handleTabClick(e) {
+  if (currentTab) {
+    currentTab.classList.remove("active");
+    if (currentItem) {
+      currentItem.classList.remove("active");
+      currentItem = null;
+    }
+  }
+  e.target.classList.add("active");
+  currentTab = e.target;
 
-    // Show the clicked tab content and select the clicked tab
-    const tabContent = document.querySelector(`#tab${index + 1}`);
-    tabContent.style.display = "block";
-    button.classList.add("selected");
+  const category = data.find((cat) => cat.name === e.target.id);
+  populateList(category.items);
+}
 
-    // Show the list of items for the selected tab
-    const items = tabContent.querySelectorAll(".item");
+function populateList(items) {
+  list.innerHTML = "";
+
+  const itemCount = document.createElement("p");
+  itemCount.textContent = `List (${items.length})`;
+  itemCount.classList.add("item-count");
+  list.appendChild(itemCount);
+
+  if (Array.isArray(items)) {
     items.forEach((item) => {
-      item.style.display = "block";
+      const listItem = document.createElement("li");
+      listItem.textContent = item;
+      listItem.classList.add("list-item");
+      listItem.addEventListener("click", handleItemClick);
+      list.appendChild(listItem);
     });
-  });
-});
+  } else {
+    console.error("Invalid items:", items);
+  }
+}
 
-// Hide all items
-const items = document.querySelectorAll(".item");
-items.forEach((item) => {
-  item.style.display = "none";
-});
+function handleItemClick(e) {
+  if (currentItem) {
+    currentItem.classList.remove("active");
+  }
+  e.target.classList.add("active");
+  currentItem = e.target;
+}
 
-// Add event listener to each item
-items.forEach((item) => {
-  item.addEventListener("click", (evt) => {
-    // Deselect all items except the clicked item
-    items.forEach((otherItem) => {
-      if (otherItem !== item) {
-        otherItem.classList.remove("selected");
-      }
-    });
-
-    // Toggle the selected state of the clicked item
-    item.classList.toggle("selected");
-  });
-});
+createTabs();
