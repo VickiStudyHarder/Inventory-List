@@ -1,4 +1,4 @@
-.body {
+body {
   font-family: Arial;
   margin-top: 50px;
   display: inline-flex;
@@ -6,7 +6,8 @@
   align-items: center;
   flex-direction: column;
 }
-.Inventory {
+
+.inventory {
   text-align: center;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -24,7 +25,6 @@
 
 .tab {
   background-color: #f2f2f2;
-
   width: inherit;
   margin-bottom: 20px;
   display: inline-flex;
@@ -36,6 +36,7 @@
   padding: 10px;
   cursor: pointer;
 }
+
 .tab button {
   margin: 10px;
   padding: 20px;
@@ -49,6 +50,7 @@
   background-color: #f2f2f2;
   width: 440px;
   display: flex;
+  /* padding-left: 30px; */
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
@@ -60,14 +62,20 @@
   background-color: #ddd;
 }
 
-.tab button.active {
+.tab button.selected {
   background-color: green;
   color: white;
 }
 
-.item-list {
+.list {
   list-style: none;
   padding: 0;
+  padding-left: 40px;
+}
+
+.count {
+  padding-left: 40px;
+  padding-top: 10px;
 }
 
 .item {
@@ -76,6 +84,7 @@
   border: 1px solid #604191;
   margin-bottom: 5px;
   cursor: pointer;
+  
 }
 
 .tab button.selected {
@@ -87,6 +96,3 @@
   background-color: green;
   color: white;
 }
-
-
-
