@@ -24,13 +24,17 @@ function InputField({ onAddItem }) {
   };
 
   return (
-    <div>
+    <div className="input-container">
       <input
+        className="input-field"
+        placeholder="Add your new item"
         value={input}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-      <button onClick={handleAddItem}>Add</button>
+      <button
+      className='input-btn'
+       onClick={handleAddItem}>Add</button>
     </div>
   );
 }

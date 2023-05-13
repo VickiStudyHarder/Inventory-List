@@ -1,5 +1,5 @@
 // App.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import data from "./data";
 import "./App.css";
 import TabList from "./TabList";
@@ -11,6 +11,13 @@ function App() {
   const [activeTab, setActiveTab] = useState(data[0].name);
   const [activeItem, setActiveItem] = useState(null);
   const [newItem] = useState(null); //new state variable
+
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [totalPages, setTotalPages] = useState(0);
+
+  // const itemsPerPage = 5; // 每页显示的项目数量
+
+
 
   const handleTabClick = (index) => {
     setActiveTab(index);
@@ -37,6 +44,10 @@ function App() {
     setItems(newItems);
   };
 
+  // const handlePageChange = (page) => {
+  //   setCurrentPage(page);
+  // };
+
   const currentTabData = items.find((datum) => datum.name === activeTab);
 
   return (
@@ -52,6 +63,9 @@ function App() {
         onItemSelect={handleItemClick}
         onItemDelete={(index) => handleItemDelete(activeTab, index)}
         onAddItem={(newItemName) => handleItemAdd(activeTab, newItemName)}
+        // currentPage={currentPage} // pass currentPage and totalPages as props
+        // totalPages={totalPages}
+        // onPageChange={handlePageChange}
       />
       
     </div>

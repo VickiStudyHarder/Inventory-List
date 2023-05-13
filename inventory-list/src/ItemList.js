@@ -6,7 +6,6 @@ import Pagination from './Pagination';
 function ItemList({ items, activeItem, onItemSelect, onItemDelete, onAddItem }) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // 每页显示的项目数量
-
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -16,13 +15,15 @@ function ItemList({ items, activeItem, onItemSelect, onItemDelete, onAddItem }) 
   const displayedItems = items.slice(startIndex, endIndex);
 
   const totalPages = Math.ceil(items.length / itemsPerPage);
-  const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
+  // const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
     <div className="list-container">
-      <div className="item-count">List ({items.length})</div>
-      {/* <InputField value={inputValue} onChange={handleInputChange} onAddItem={handleAddItem} /> */}
       <InputField onAddItem={onAddItem} /> 
+      <div className="item-count">
+        List - Page {currentPage}/{totalPages} (Total - {items.length})
+      </div>
+
       {displayedItems.map((item, index) => (
         <ListItem
           key={index}
@@ -32,6 +33,7 @@ function ItemList({ items, activeItem, onItemSelect, onItemDelete, onAddItem }) 
           onDelete={() => onItemDelete(index)}
         />
       ))}
+
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}

@@ -3,11 +3,15 @@ import React from 'react';
 
 function Pagination({ currentPage, totalPages, onPageChange }) {
   const handlePrevClick = () => {
-    onPageChange(currentPage - 1);
+    onPageChange(Math.max(1, currentPage - 1));
   };
 
   const handleNextClick = () => {
-    onPageChange(currentPage + 1);
+    onPageChange(Math.min(totalPages, currentPage + 1));
+  };
+
+  const handlePageNumberClick = (page) => {
+    onPageChange(page);
   };
 
   return (
@@ -17,17 +21,23 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
         disabled={currentPage === 1}
         onClick={handlePrevClick}
       >
-        Prev
+        {"<"}
       </button>
-      <span className="page-info">
-        Page {currentPage} of {totalPages}
-      </span>
+      {[...Array(totalPages)].map((_, i) => (
+        <button
+          key={i}
+          className={`page-number ${i + 1 === currentPage ? 'active' : ''}`}
+          onClick={() => handlePageNumberClick(i + 1)}
+        >
+          {i + 1}
+        </button>
+      ))}
       <button
         className="next-btn"
         disabled={currentPage === totalPages}
         onClick={handleNextClick}
       >
-        Next
+        {">"}
       </button>
     </div>
   );
