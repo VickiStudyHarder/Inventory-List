@@ -1,17 +1,32 @@
 // ItemList.js
-import React from 'react';
-import ListItem from './ListItem';
+import React from "react";
+import ListItem from "./ListItem";
+import InputField from "./InputField";
 
-function ItemList({ items, activeItem, onItemSelect }) {
+function ItemList({
+  items,
+  activeItem,
+  newItem,
+  onItemSelect,
+  onItemDelete,
+  onAddItem,
+}) {
   return (
     <div className="list-container">
+      <InputField onAddItem={onAddItem} />
+
       <div className="item-count">List ({items.length})</div>
-      {items.map(item => (
+
+      {items.map((item, index) => (
         <ListItem
-          key={item}
+          key={index}
           name={item}
-          isActive={item === activeItem}
-          onClick={() => onItemSelect(item)}
+          isActive={index === activeItem}
+          onClick={() => onItemSelect(index)}
+          onDelete={(e) => {
+            e.stopPropagation(); // Prevent triggering onClick event on the parent element
+            onItemDelete(index);
+          }}
         />
       ))}
     </div>

@@ -1,12 +1,9 @@
 // Tab.js
-import React from 'react';
+import React from "react";
 
 function Tab({ name, isActive, onClick }) {
   return (
-    <button
-      className={`tab ${isActive ? 'active' : ''}`}
-      onClick={onClick}
-    >
+    <button className={`tab ${isActive ? "active" : ""}`} onClick={onClick}>
       {name}
     </button>
   );
