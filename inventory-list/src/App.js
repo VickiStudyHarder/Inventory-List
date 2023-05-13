@@ -1,5 +1,5 @@
 // App.js
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import data from "./data";
 import "./App.css";
 import TabList from "./TabList";
