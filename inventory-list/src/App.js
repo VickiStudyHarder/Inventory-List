@@ -53,6 +53,7 @@ function App() {
         onItemDelete={(index) => handleItemDelete(activeTab, index)}
         onAddItem={(newItemName) => handleItemAdd(activeTab, newItemName)}
       />
+      
     </div>
   );
 }
