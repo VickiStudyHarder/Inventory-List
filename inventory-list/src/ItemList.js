@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
-import ListItem from './ListItem';
-import InputField from './InputField';
-import Pagination from './Pagination';
+import React, { useState } from "react";
+import ListItem from "./ListItem";
+import InputField from "./InputField";
+import Pagination from "./Pagination";
 
-function ItemList({ items, activeItem, onItemSelect, onItemDelete, onAddItem }) {
+function ItemList({
+  items,
+  activeItem,
+  onItemSelect,
+  onItemDelete,
+  onAddItem,
+}) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // 每页显示的项目数量
   const handlePageChange = (page) => {
@@ -19,7 +25,7 @@ function ItemList({ items, activeItem, onItemSelect, onItemDelete, onAddItem }) 
 
   return (
     <div className="list-container">
-      <InputField onAddItem={onAddItem} /> 
+      <InputField onAddItem={onAddItem} />
       <div className="item-count">
         List - Page {currentPage}/{totalPages} (Total - {items.length})
       </div>

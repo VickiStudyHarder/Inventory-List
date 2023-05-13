@@ -1,5 +1,5 @@
 // Pagination.js
-import React from 'react';
+import React from "react";
 
 function Pagination({ currentPage, totalPages, onPageChange }) {
   const handlePrevClick = () => {
@@ -26,7 +26,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
       {[...Array(totalPages)].map((_, i) => (
         <button
           key={i}
-          className={`page-number ${i + 1 === currentPage ? 'active' : ''}`}
+          className={`page-number ${i + 1 === currentPage ? "active" : ""}`}
           onClick={() => handlePageNumberClick(i + 1)}
         >
           {i + 1}

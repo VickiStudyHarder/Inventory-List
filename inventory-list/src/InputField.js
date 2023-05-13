@@ -1,8 +1,8 @@
 // InputField.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function InputField({ onAddItem }) {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
 
   const handleInputChange = (event) => {
     setInput(event.target.value);
@@ -13,12 +13,12 @@ function InputField({ onAddItem }) {
 
     if (trimmedInput) {
       onAddItem(trimmedInput);
-      setInput('');
+      setInput("");
     }
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       handleAddItem();
     }
   };
@@ -32,9 +32,9 @@ function InputField({ onAddItem }) {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-      <button
-      className='input-btn'
-       onClick={handleAddItem}>Add</button>
+      <button className="input-btn" onClick={handleAddItem}>
+        Add
+      </button>
     </div>
   );
 }
